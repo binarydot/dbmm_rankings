@@ -1,0 +1,121 @@
+var commands = new Array();
+commands[1] = new Command(1);
+commands[2] = new Command(2);
+commands[3] = new Command(3);
+commands[4] = new Command(4);
+commands[5] = new Command(5);
+
+
+function showElementTypePopup(command) {
+	var html = "<div id=\"elementTypePopup\" class=\"popup\">";
+	html += "<table class=\"rosterPopupTable\">";
+	html += "<tr><td><span class=\"button\"><a href=\"javascript:elementTypeSelected(1, 'ART');\">Artillery</a></span>";
+	html += "</td></tr>";
+	html += "</table></div>";
+	
+	document.getElementById("popupHolder").innerHTML = html;
+}
+
+function removeElementTypePopup() {
+	document.getElementById("popupHolder").innerHTML = "";
+}
+
+function elementTypeSelected(command, elementType) {
+	removeElementTypePopup();
+	// TF, PF, PO, FO don't have grades or training...
+	// TF, PF and FO go to extras
+	// PO go to command selector
+	switch (elementType.valueOf()) {
+	case "ART":
+		var element = new Artillery();
+		showElementGradeTrainingPopup(command, element);
+		break;
+	}
+	
+}
+
+function showElementGradeTrainingPopup(command, element) {
+	if (element == null) {
+		removeElementGradeTrainingPopup();
+	} else {
+		var flags = element.getAllowedGradesAndTraining();
+		var html = "<div id=\"elementTypePopup\" class=\"popup\">";
+		html += "<table class=\"rosterPopupTable\">";
+		html += "<tr><td>";
+		if (flags[0] == true) {
+			html += "<span class=\"button\"><a href=\"javascript:elementGradeTrainingSelected(1, " + element + ", 'REG', 'S');\">Reg (S)</a></span>";
+		} else {
+			html += "&nbsp;";
+		}
+		html += "</td><td>";
+		if (flags[5] == true) {
+			html += "<span class=\"button\"><a href=\"javascript:elementGradeTrainingSelected(1, " + element + ", 'IRR', 'S');\">Irr (S)</a></span>";
+		} else {
+			html += "&nbsp;";
+		}
+		html += "</td></tr><tr><td>";
+		if (flags[01] == true) {
+			html += "<span class=\"button\"><a href=\"javascript:elementGradeTrainingSelected(1, " + element + ", 'REG', 'O');\">Reg (O)</a></span>";
+		} else {
+			html += "&nbsp;";
+		}
+		html += "</td><td>";
+		if (flags[6] == true) {
+			html += "<span class=\"button\"><a href=\"javascript:elementGradeTrainingSelected(1, " + element + ", 'IRR', 'O');\">Irr (O)</a></span>";
+		} else {
+			html += "&nbsp;";
+		}
+		html += "</td></tr>";
+		html += "</table></div>";
+		
+		document.getElementById("popupHolder").innerHTML = html;		
+	}
+}
+
+function removeElementGradeTrainingPopup() {
+	document.getElementById("popupHolder").innerHTML = "";
+}
+
+function elementGradeTrainingSelected(command, element, grade, training) {
+	element.setGrade(grade);
+	element.setTraining(training);
+	//Shp, Gal can't have extras
+	if (element.getType().valueOf() == "SHP" || element.getType().valueOf() == "GAL") {
+		addElementToCommand(command, element, 1);
+	} else {
+		showElementExtrasPopup(command, element);
+	}
+}
+
+function showElementExtrasPopup(command, element) {
+	elementExtrasSelected(command, element);
+		
+}
+
+function removeElementExtrasPopup() {
+	document.getElementById("popupHolder").innerHTML = "";
+}
+
+function elementExtrasSelected(command, element) {
+	
+	addElementToCommand(command, element, 1);
+}
+
+function addElementToCommand(command, element, number) {
+	commands[command].addElement(element, number);
+	var html = "<span class=\"button\"><a href=\"javascript:showElementTypePopup(" + number +");\">Add Element</a></span>";
+	var elements = commands[command].getElements();
+	for (e in elements) {
+		html += "<span class=\"button\"><a href=\"javascript:showElementModifyPopup(" + e + ");\">" + e.getDesc() + "</a></span>";
+	}
+	document.getElementById("command" + number + "Elements").innerHTML = html;
+	updateTotals();
+}
+
+function removeElementFromCommand(command, element, number) {
+	
+}
+
+function updateTotals() {
+	
+}
