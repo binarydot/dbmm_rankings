@@ -1,0 +1,20 @@
+{
+    "name": "binarydot/dbmm-rankings-ci4",
+    "description": "CodeIgniter 4 application for DBMM rankings",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "codeigniter4/framework": "^4.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "scripts": {
+        "start": "php spark serve"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

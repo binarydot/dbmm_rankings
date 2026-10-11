@@ -1,0 +1,189 @@
+@CHARSET "UTF-8";
+
+.line1col1 {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+}
+
+.line2col1 {
+	position: absolute;
+	top: 32px;
+	left: 2px;
+}
+
+.line2col2 {
+	position: absolute;
+	top: 32px;
+	left: 122px;
+}
+
+.line3col1 {
+	position: absolute;
+	top: 62px;
+	left: 2px;
+}
+
+.line3col2 {
+	position: absolute;
+	top: 62px;
+	left: 122px;
+}
+
+.line4col1 {
+	position: absolute;
+	top: 92px;
+	left: 2px;
+}
+
+.line4col2 {
+	position: absolute;
+	top: 92px;
+	left: 122px;
+}
+
+.line5col1 {
+	position: absolute;
+	top: 122px;
+	left: 2px;
+}
+
+.line5col2 {
+	position: absolute;
+	top: 122px;
+	left: 122px;
+}
+
+.line6col1 {
+	position: absolute;
+	top: 152px;
+	left: 2px;
+}
+
+.line6col2 {
+	position: absolute;
+	top: 152px;
+	left: 122px;
+}
+.line6col3 {
+	position: absolute;
+	top: 152px;
+	left: 602px;
+}
+
+.line7col1 {
+	position: absolute;
+	top: 182px;
+	left: 2px;
+}
+
+.line7col2 {
+	position: absolute;
+	top: 182px;
+	left: 122px;
+}
+.line8col1 {
+	position: absolute;
+	top: 212px;
+	left: 2px;
+}
+
+.line8col2 {
+	position: absolute;
+	top: 212px;
+	left: 122px;
+}
+.line9col1 {
+	position: absolute;
+	top: 242px;
+	left: 2px;
+}
+
+.line9col2 {
+	position: absolute;
+	top: 242px;
+	left: 122px;
+}
+.line9col3 {
+	position: absolute;
+	top: 242px;
+	left: 602px;
+}
+.line10col1 {
+	position: absolute;
+	top: 272px;
+	left: 2px;
+}
+
+.line10col2 {
+	position: absolute;
+	top: 272px;
+	left: 122px;
+}
+.dropdown {
+	position: absolute;
+	width: 200px;
+	z-index: 200;
+	background-color: #ccc;
+}
+
+.dropdown0 {
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	height: 20px;
+	width: 120px;
+	background-color: #ccc;
+}
+.dropdown1 {
+	position: absolute;
+	top: 40px;
+	left: 0px;
+	background-color: #ccc;
+}
+.dropdown2 {
+	position: absolute;
+	top: 60px;
+	left: 0px;
+	background-color: #ccc;
+}
+.dropdown3 {
+	position: absolute;
+	top: 80px;
+	left: 0px;
+	background-color: #ccc;
+}
+.dropdown4 {
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	background-color: #ccc;
+}
+
+.popup {
+	border-top: 2px solid #333;
+	border-left: 2px solid #333;
+	border-right: 5px solid #333;
+	border-bottom: 5px solid #333;
+	position: absolute;
+	left: 100px;
+	top: 200px;
+	width: 700px;
+	height: 300px;
+	background-color: #eee;
+	z-index: 1;
+}
+
+#addPlayerPopup {
+	position: absolute;
+	left: 150px;
+	top: 250px;
+	width: 450px;
+	height: 250px;
+}
+
+#errorPopup {
+	z-index: 1000;
+	}
+
+

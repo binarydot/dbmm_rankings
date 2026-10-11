@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+
+/public_html/application/config/config.php
+/public_html/application/config/database.php
+/public_html/application/config/memcached.php
+
+/ci4/vendor/
+/ci4/writable/debugbar/*
+/ci4/writable/cache/*
+!/ci4/writable/cache/.gitkeep
+/ci4/writable/logs/*
+!/ci4/writable/logs/.gitkeep
+/ci4/writable/session/*
+!/ci4/writable/session/.gitkeep
