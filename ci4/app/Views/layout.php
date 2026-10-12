@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="<?= session()->get('site_lang') === 'italian' ? 'it' : 'en' ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/font-awesome/css/font-awesome.min.css') ?>">
     <style>
-        body { padding: 1rem; }
+        .language-switcher { float: right; width: 100px; padding-top: 20px; text-align: right; }
+        .language-switcher img { width: 24px; height: auto; }
+        .inner_banner { margin-right: 100px; }
         .ranking-flag { width: 24px; height: 24px; }
         .ranking-cell { min-width: 4rem; text-align: center; }
         .purple { color: #800080; }
@@ -22,12 +24,21 @@
 <body class="body">
     <header class="container-fluid">
         <div class="row banner">
+            <div class="language-switcher">
+                <a href="<?= site_url('langswitch/switchLanguage/english') ?>" title="English" aria-label="Switch language to English">
+                    <img src="<?= base_url('images/gb.gif') ?>" alt="English">
+                </a>
+                <a href="<?= site_url('langswitch/switchLanguage/italian') ?>" title="Italiano" aria-label="Switch language to Italian">
+                    <img src="<?= base_url('images/it.gif') ?>" alt="Italiano">
+                </a>
+            </div>
             <h1 class="inner_banner">DBMM Rankings<?= isset($title) ? ' - ' . esc($title) : '' ?></h1>
         </div>
     </header>
-    <?= view('legacy/menu', [
-        'menuItem' => 'rankings',
-        'legacySession' => new \App\Libraries\LegacySession(service('session')),
+    <?= view('partials/navigation', [
+        'menuItem' => $menuItem ?? 'rankings',
+        'loggedIn' => (bool) session()->get('loggedIn'),
+        'siteLanguage' => session()->get('site_lang') === 'italian' ? 'italian' : 'english',
     ]) ?>
     <main>
         <?= $this->renderSection('content') ?>
