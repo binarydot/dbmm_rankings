@@ -1,0 +1,39 @@
+@charset "utf-8";
+/*
+*/
+#content {
+	border-top: 2px solid #FFD2D2;
+	border-left: 2px solid #FFD2D2;
+	border-right: 2px solid #FFD2D2;
+	border-bottom: 2px solid #FFD2D2;
+}
+#bottom {
+	background-image: url(../images/bottom.gif);
+}
+.banner {
+	background-image: url(../images/roman_banner_bg.png);
+	background-repeat: no-repeat;
+	background-color: #b01010;
+	color: #fff;
+	height: 139px;
+}
+#main_menubar {
+	background-image: url(../images/topmenu_bg.jpg);
+	height: 38px; 
+}
+.menuitem {
+}
+.menuitemselected {
+	color: #fff;
+}
+.menuitemselected a {
+	color: #ccc;
+}
+
+.menuitem a {
+	color: #fff;
+}
+
+.menuitem a:hover {
+	color: #ccc;
+}
