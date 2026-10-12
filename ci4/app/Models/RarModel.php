@@ -6,6 +6,15 @@ use CodeIgniter\Model;
 
 class RarModel extends Model
 {
+    public function getRars(): array
+    {
+        return $this->db->table('rar')
+            ->select('rar_id, rar_name, rar_tag')
+            ->orderBy('rar_name')
+            ->get()
+            ->getResult();
+    }
+
     public function getRarsAndGroups(): array
     {
         $sql = '

@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Libraries\LegacyController as CI_Controller;
+use CodeIgniter\Controller;
 
-class LangSwitch extends CI_Controller
+class LangSwitch extends Controller
 {
-    public function switchLanguage(string $language = ''): \CodeIgniter\HTTP\RedirectResponse
+    public function switchLanguage(string $language = ''): \CodeIgniter\HTTP\ResponseInterface
     {
         $language = $language !== '' ? $language : 'english';
-        $this->session->set_userdata('site_lang', $language);
+        service('session')->set('site_lang', $language);
 
-        return redirect()->to(base_url());
+        return $this->response->redirect(config('App')->baseURL);
     }
 }

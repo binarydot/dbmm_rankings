@@ -28,15 +28,11 @@
 <?php      foreach($matchResults['rounds'] as $roundNumber => $round): ?>
 <?php        $playerFound = false; ?>
 <?php        foreach($round as $match): ?>
-<?php          if($match['winners'][0]['ID'] == $result['competitorID'] ||
-			(isset($match['winners'][1]['ID']) &&
-			$match['winners'][1]['ID'] == $result['competitorID'])): ?>
+<?php          if(in_array($result['competitorID'], array_column($match['winners'] ?? [], 'ID'))): ?>
           	, <?=$match['winnerScore']?>
 <?php            $playerFound = true; ?>
 <?php          endif; ?>
-<?php          if($match['losers'][0]['ID'] == $result['competitorID'] ||
-			(isset($match['losers'][1]['ID']) && 
-			$match['losers'][1]['ID'] == $result['competitorID'])): ?>
+<?php          if(in_array($result['competitorID'], array_column($match['losers'] ?? [], 'ID'))): ?>
           	, <?=$match['loserScore']?>
 <?php            $playerFound = true; ?>
 <?php          endif; ?>

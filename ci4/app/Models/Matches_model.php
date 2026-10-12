@@ -122,6 +122,8 @@ class Matches_model extends CI_Model {
     		$returnData['rounds'][$row->round][$matchId]['winnerScore'] = $row->winner_score;
     		$returnData['rounds'][$row->round][$matchId]['loserScore'] = $row->loser_score;
     		$returnData['rounds'][$row->round][$matchId]['score'] = $row->winner_score.' - '.$row->loser_score;
+		$returnData['rounds'][$row->round][$matchId]['winners'] = array();
+		$returnData['rounds'][$row->round][$matchId]['losers'] = array();
     		$sql = "SELECT c.first_name
 	    		,c.last_name
 	    		,c.competitor_id

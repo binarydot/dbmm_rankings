@@ -132,7 +132,7 @@ class Kudos_rankings_model extends CI_Model {
 				AND   s.competition_id = c.competition_id
 			";
 			$query = $this->db->query($sql, array($comp_id));
-			$ratings = $query->get_result();
+			$ratings = $query->result();
 			$tr = 0;
 			foreach ($ratings as $rating) {
 				$tr += $rating->glicko_rating;
@@ -198,7 +198,7 @@ class Kudos_rankings_model extends CI_Model {
 					$rankings["Id".$playerId]["playerId"] = $playerId;
 					$rankings["Id".$playerId]["playerName"] = $playerName;
 					$rankings["Id".$playerId]["playerData"] = 
-						 $this->calcRankings($db, $unprotectedScores, $minComps, $unprotectedComp, $playerId, $calcType, $startDate, $endDate, $rarSqlWhere, $useRar);
+						 $this->calcRankings($unprotectedScores, $minComps, $unprotectedComp, $playerId, $calcType, $startDate, $endDate, $rarSqlWhere, $useRar, $rar);
 				}
 				// reset the player data
 				$playerId = $player->competitor_id;
@@ -215,7 +215,7 @@ class Kudos_rankings_model extends CI_Model {
 		$rankings["Id".$playerId]["playerId"] = $playerId;
 		$rankings["Id".$playerId]["playerName"] = $playerName;
 		$rankings["Id".$playerId]["playerData"] = 
-			$this->calcRankings($db, $unprotectedScores, $minComps, $unprotectedComp, $playerId, $calcType, $startDate, $endDate, $rarSqlWhere, $useRar);
+			$this->calcRankings($unprotectedScores, $minComps, $unprotectedComp, $playerId, $calcType, $startDate, $endDate, $rarSqlWhere, $useRar, $rar);
 		arsort($rankings);
 		$returnData["rankings"] = $rankings;
 		$returnData["competitions"] = $competitions;
@@ -228,7 +228,7 @@ class Kudos_rankings_model extends CI_Model {
 		
 	}
 
-	function calcRankings(&$db, $unprotectedScores, $min_comps, $unprotectedComp, $playerId, $calc_type, $startDate, $endDate, $rarSqlWhere, $useRar) {
+	function calcRankings($unprotectedScores, $min_comps, $unprotectedComp, $playerId, $calc_type, $startDate, $endDate, $rarSqlWhere, $useRar, $rar) {
 		//was this player also an umpire at any point?
 		// BUG FIX - only pick up umpire scores in the specific time period
 		$sql = "
@@ -257,7 +257,7 @@ class Kudos_rankings_model extends CI_Model {
 			}
 			$avgScore = $totalScore/$comps;
 			foreach ($umpire as $umpireComp) {
-				if (!is_null($unprotectedScores[$umpireComp->competition_id])) {
+				if (isset($unprotectedScores[$umpireComp->competition_id])) {
 					if ($unprotectedScores[$umpireComp->competition_id] < $avgScore) {
 						$unprotectedComp[$umpireComp->competition_id] = $umpireComp->competition_name." (UMPIRE) replaces original score of ".$unprotectedScores[$umpireComp->competition_id];
 						$unprotectedScores[$umpireComp->competition_id] = $avgScore;
