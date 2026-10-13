@@ -31,9 +31,9 @@ $items = [
     'stats' => ['matches', 'fa-pie-chart'],
 ];
 ?>
-<div class="row container-fluid">
-    <nav id="main_menubar" aria-label="Main navigation">
-        <ul class="nav nav-tabs" id="main_menu_items">
+<div class="site-navigation">
+    <nav id="main_menubar" aria-label="Main navigation" class="site-navigation__inner">
+        <ul class="nav" id="main_menu_items">
             <?php foreach ($items as $item => [$route, $icon]): ?>
                 <li class="<?= $menuItem === $item ? 'active' : '' ?>" id="menuitem_<?= esc($item, 'attr') ?>">
                     <a href="<?= site_url($route) ?>"<?= $menuItem === $item ? ' aria-current="page"' : '' ?>>

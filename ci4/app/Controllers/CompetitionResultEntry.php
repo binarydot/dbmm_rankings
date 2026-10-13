@@ -33,7 +33,8 @@ class CompetitionResultEntry extends BaseController
 
         $data = $this->postedResult();
         $validation = service('validation');
-        if (! $validation->run($data, $this->resultRules())) {
+        $validation->setRules($this->resultRules());
+        if (! $validation->run($data)) {
             return redirect()->to(site_url('competition/addResult/' . $competitionId))
                 ->withInput()
                 ->with('errors', $validation->getErrors());
@@ -117,7 +118,8 @@ class CompetitionResultEntry extends BaseController
             $data['competitor_id_2'] = null;
         }
         $validation = service('validation');
-        if (! $validation->run($data, $this->resultRules())) {
+        $validation->setRules($this->resultRules());
+        if (! $validation->run($data)) {
             return redirect()->to(site_url('competition/editResult/' . $competitionId . '/' . $positionId))
                 ->withInput()
                 ->with('errors', $validation->getErrors());

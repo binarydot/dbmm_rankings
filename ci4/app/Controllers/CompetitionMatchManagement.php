@@ -28,7 +28,8 @@ class CompetitionMatchManagement extends BaseController
 
         $data = $this->postedMatch();
         $validation = service('validation');
-        if (! $validation->run($data, $this->rules())) {
+        $validation->setRules($this->rules());
+        if (! $validation->run($data)) {
             return redirect()->to(site_url('competition/addMatch/' . $competitionId))
                 ->withInput()
                 ->with('errors', $validation->getErrors());
@@ -85,7 +86,8 @@ class CompetitionMatchManagement extends BaseController
 
         $data = $this->postedMatch();
         $validation = service('validation');
-        if (! $validation->run($data, $this->rules())) {
+        $validation->setRules($this->rules());
+        if (! $validation->run($data)) {
             return redirect()->to(site_url('competition/editMatch/' . $competitionId . '/' . $matchId))
                 ->withInput()
                 ->with('errors', $validation->getErrors());

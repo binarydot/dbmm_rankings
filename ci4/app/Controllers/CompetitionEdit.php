@@ -81,7 +81,8 @@ class CompetitionEdit extends BaseController
 
         $data = CompetitionCreationModel::formData((array) service('request')->getPost());
         $validation = service('validation');
-        if (! $validation->run($data, CompetitionCreationModel::validationRules())) {
+        $validation->setRules(CompetitionCreationModel::validationRules());
+        if (! $validation->run($data)) {
             return redirect()->to(site_url('competition/edit/' . $competitionId))
                 ->withInput()
                 ->with('errors', $validation->getErrors());

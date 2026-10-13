@@ -53,7 +53,8 @@ class CompetitionCreation extends BaseController
 
         $data = CompetitionCreationModel::formData((array) service('request')->getPost());
         $validation = service('validation');
-        if (! $validation->run($data, CompetitionCreationModel::validationRules())) {
+        $validation->setRules(CompetitionCreationModel::validationRules());
+        if (! $validation->run($data)) {
             return redirect()->to(site_url('competition/add'))
                 ->withInput()
                 ->with('errors', $validation->getErrors());

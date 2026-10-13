@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/red_bootstrap.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/font-awesome/css/font-awesome.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/material.css') ?>">
     <style>
-        .language-switcher { float: right; width: 100px; padding-top: 20px; text-align: right; }
         .language-switcher img { width: 24px; height: auto; }
-        .inner_banner { margin-right: 100px; }
         .ranking-flag { width: 24px; height: 24px; }
         .ranking-cell { min-width: 4rem; text-align: center; }
         .purple { color: #800080; }
@@ -22,9 +21,10 @@
     </style>
 </head>
 <body class="body">
-    <header class="container-fluid">
-        <div class="row banner">
-            <div class="language-switcher">
+    <header class="site-header">
+        <div class="site-header__inner">
+            <h1 class="site-brand">DBMM Rankings</h1>
+            <div class="language-switcher" aria-label="Language selection">
                 <a href="<?= site_url('langswitch/switchLanguage/english') ?>" title="English" aria-label="Switch language to English">
                     <img src="<?= base_url('images/gb.gif') ?>" alt="English">
                 </a>
@@ -32,7 +32,6 @@
                     <img src="<?= base_url('images/it.gif') ?>" alt="Italiano">
                 </a>
             </div>
-            <h1 class="inner_banner">DBMM Rankings<?= isset($title) ? ' - ' . esc($title) : '' ?></h1>
         </div>
     </header>
     <?= view('partials/navigation', [
@@ -40,7 +39,7 @@
         'loggedIn' => (bool) session()->get('loggedIn'),
         'siteLanguage' => session()->get('site_lang') === 'italian' ? 'italian' : 'english',
     ]) ?>
-    <main>
+    <main class="page-shell">
         <?= $this->renderSection('content') ?>
     </main>
 </body>
